@@ -1,0 +1,15 @@
+databaseChangeLog:
+  -  changeSet:
+       id:  01-create-table
+       author:  max
+       changes:
+         -  createTable:
+              columns:
+                -  column:
+                     name:  name
+                     type:  varchar(255)
+                -  column:
+                     name:  description
+                     type:  text
+              schemaName:  public
+              tableName:  concept
