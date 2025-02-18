@@ -5,11 +5,14 @@ databaseChangeLog:
        changes:
          -  createTable:
               columns:
-                -  column:
-                     name:  name
-                     type:  varchar(255)
-                -  column:
-                     name:  description
-                     type:  text
+                - column:
+                    name: id
+                    type: uuid
+                - column:
+                    name:  name
+                    type:  varchar(255)
+                - column:
+                    name:  description
+                    type:  text
               schemaName:  public
               tableName:  concept
