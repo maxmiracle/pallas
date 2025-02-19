@@ -1,5 +1,6 @@
 package ru.maximserver.pallas.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,14 +12,16 @@ import ru.maximserver.pallas.repository.ReactiveConceptRepository;
 
 @RestController
 @RequestMapping("/concept")
+@Slf4j
 public class ConceptController {
 
     @Autowired
     private ReactiveConceptRepository conceptRepository;
 
     @PostMapping
-    Mono<Concept> create(@RequestBody Concept concept) {
-        concept.setId(null);
-        return conceptRepository.save(concept);
+    public Mono<Concept> create(@RequestBody Concept concept) {
+        concept.setNewOverride(true);
+        return conceptRepository.save(concept)
+                .doOnNext(concept1 -> log.info(concept1.toString()));
     }
 }

@@ -2,12 +2,17 @@ databaseChangeLog:
   -  changeSet:
        id:  01-create-table
        author:  max
+       dbms: postgresql
        changes:
          -  createTable:
               columns:
                 - column:
                     name: id
                     type: uuid
+                    defaultValueComputed: gen_random_uuid()
+                    constraints:
+                      nullable: false
+                      primaryKey: true
                 - column:
                     name:  name
                     type:  varchar(255)
